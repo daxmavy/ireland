@@ -68,16 +68,17 @@ def extract_zip(zip_path, extract_to):
 
 def extract_gzip(gz_path, output_path):
     """
-    Extract a gzip file.
+    Extract a gzip file using chunked reading for memory efficiency.
     
     Args:
         gz_path: Path to the gzip file
         output_path: Path for the extracted file
     """
+    import shutil
     print(f"Extracting {gz_path}...")
     with gzip.open(gz_path, 'rb') as f_in:
         with open(output_path, 'wb') as f_out:
-            f_out.write(f_in.read())
+            shutil.copyfileobj(f_in, f_out)
     print(f"Extraction complete: {output_path}")
 
 
