@@ -174,15 +174,6 @@ explore_nearest_neighbors(model, "king", n=10)
 - **matplotlib** (>=3.4.0): Plotting and visualization
 - **scipy** (>=1.7.0): Scientific computing (for distance calculations)
 
-## Legacy Files
-
-The project has been refactored for better organization. The following files are kept for reference but are no longer the primary entry points:
-
-- `download_models.py`: Original manual model downloader (models now auto-download via gensim)
-- `word2vec_analogy.py`: Original analogy testing script (replaced by `analogy.py` with modular `src/` package)
-
-You can still use these files if needed, but `analogy.py` is now the recommended entry point.
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
