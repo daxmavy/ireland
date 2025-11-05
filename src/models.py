@@ -7,6 +7,69 @@ primarily using gensim's downloader API for convenience.
 """
 
 import os
+import ssl
+import certifi
+import urllib.request
+import shutil
+
+# Fix SSL certificate verification on macOS
+# Use certifi's certificate bundle instead of system certificates
+os.environ['SSL_CERT_FILE'] = certifi.where()
+os.environ['REQUESTS_CA_BUNDLE'] = certifi.where()
+
+# Create SSL context with certifi certificates
+_ssl_context = ssl.create_default_context(cafile=certifi.where())
+
+# Patch urllib.request to use certifi certificates for SSL verification
+# This fixes the SSL certificate verification issue on macOS
+_original_urlopen = urllib.request.urlopen
+_original_urlretrieve = urllib.request.urlretrieve
+
+def _patched_urlopen(url, *args, **kwargs):
+    """Patch urlopen to use certifi certificates."""
+    # If it's HTTPS, add SSL context
+    if isinstance(url, (str, bytes)) and (isinstance(url, str) and url.startswith('https://')):
+        if 'context' not in kwargs:
+            kwargs['context'] = _ssl_context
+    elif isinstance(url, urllib.request.Request):
+        if url.get_full_url().startswith('https://'):
+            if 'context' not in kwargs:
+                kwargs['context'] = _ssl_context
+    return _original_urlopen(url, *args, **kwargs)
+
+def _patched_urlretrieve(url, filename, reporthook=None, data=None):
+    """Patch urlretrieve to use certifi certificates."""
+    if isinstance(url, str) and url.startswith('https://'):
+        # For HTTPS URLs, we need to use urlopen with SSL context
+        response = _patched_urlopen(url, data=data)
+        try:
+            # Get file size if available
+            file_size = None
+            if hasattr(response, 'headers') and 'Content-Length' in response.headers:
+                file_size = int(response.headers['Content-Length'])
+            
+            with open(filename, 'wb') as f:
+                block_size = 8192
+                bytes_read = 0
+                while True:
+                    chunk = response.read(block_size)
+                    if not chunk:
+                        break
+                    f.write(chunk)
+                    bytes_read += len(chunk)
+                    if reporthook:
+                        reporthook(bytes_read, file_size if file_size else -1, file_size if file_size else -1)
+        finally:
+            response.close()
+        return (filename, response.headers if hasattr(response, 'headers') else {})
+    else:
+        # For non-HTTPS, use original function
+        return _original_urlretrieve(url, filename, reporthook, data)
+
+# Apply the patches
+urllib.request.urlopen = _patched_urlopen
+urllib.request.urlretrieve = _patched_urlretrieve
+
 import gensim.downloader as api
 from gensim.models import KeyedVectors
 
@@ -24,6 +87,21 @@ class ModelManager:
         self.cache_dir = cache_dir
         os.makedirs(cache_dir, exist_ok=True)
         self._models = {}
+        self._ensure_gensim_cache()
+    
+    def _ensure_gensim_cache(self):
+        """
+        Ensure gensim's cache is initialized by loading model information.
+        This will download information.json if it doesn't exist.
+        """
+        try:
+            # Try to access the info, which will trigger cache initialization
+            # This will automatically download information.json if missing and internet is available
+            api.info()
+        except (ValueError, FileNotFoundError):
+            # If cache initialization fails, it will be handled at model load time
+            # with a clearer error message
+            pass
     
     def load_word2vec_google_news(self):
         """
@@ -47,6 +125,18 @@ class ModelManager:
         print(f"Model: {model_name}")
         print(f"Size: ~1.6GB download, ~3.5GB in memory")
         print("This may take a few minutes on first download...")
+        
+        # Ensure cache is initialized before loading
+        # This will automatically download information.json if missing
+        try:
+            api.info()
+        except (ValueError, FileNotFoundError) as e:
+            raise RuntimeError(
+                "Failed to initialize gensim cache. Please ensure you have internet "
+                "connectivity. Gensim needs to download model information file. "
+                "If the problem persists, try deleting ~/gensim-data and running again. "
+                f"Original error: {e}"
+            )
         
         # Download and load the model using gensim's downloader
         model = api.load(model_name)
@@ -87,6 +177,18 @@ class ModelManager:
         print(f"Model: {model_name}")
         print(f"Dimension: {dimension}")
         print("This may take a few minutes on first download...")
+        
+        # Ensure cache is initialized before loading
+        # This will automatically download information.json if missing
+        try:
+            api.info()
+        except (ValueError, FileNotFoundError) as e:
+            raise RuntimeError(
+                "Failed to initialize gensim cache. Please ensure you have internet "
+                "connectivity. Gensim needs to download model information file. "
+                "If the problem persists, try deleting ~/gensim-data and running again. "
+                f"Original error: {e}"
+            )
         
         # Download and load the model using gensim's downloader
         model = api.load(model_name)
