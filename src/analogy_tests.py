@@ -217,13 +217,13 @@ def calculate_vector_arithmetic(model, positive_words, negative_words, topn=10):
     try:
         results = model.most_similar(positive=positive_words, negative=negative_words, topn=topn)
         
-        print(f"\nVector arithmetic:")
-        print(f"  Positive: {', '.join(positive_words)}")
-        print(f"  Negative: {', '.join(negative_words)}")
-        print(f"\nTop {topn} results:")
+        # print(f"\nVector arithmetic:")
+        # print(f"  Positive: {', '.join(positive_words)}")
+        # print(f"  Negative: {', '.join(negative_words)}")
+        # print(f"\nTop {topn} results:")
         
-        for i, (word, similarity) in enumerate(results, 1):
-            print(f"{i:2d}. {word:<20} (similarity: {similarity:.4f})")
+        # for i, (word, similarity) in enumerate(results, 1):
+            # print(f"{i:2d}. {word:<20} (similarity: {similarity:.4f})")
         
         return results
         
