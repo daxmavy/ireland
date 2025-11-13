@@ -4,11 +4,11 @@ Rank,Settlement,Population,Province,County,Jurisdiction,Description,Latitude,Lon
 3,Cork,222333,Munster,County Cork,Republic,"Largest city in the province of Munster in the south of Ireland. Cork is one of Ireland's oldest cities, having received city status in the 900s.",51.8985136,-8.4726423
 4,Limerick,102287,Munster,"County Limerick, County Clare",Republic,Principal city of Ireland's Mid-West Region and second-largest city in Munster,52.661252,-8.6301239
 5,Galway,85910,Connacht,County Galway,Republic,Largest city in the province of Connacht,53.2744122,-9.0490601
-6,Derry,85279,Ulster,County Londonderry,Northern,Second largest city in Ulster,53.4008462,-7.2519871
+6,Derry,85279,Ulster,County Londonderry,Northern,Second largest city in Ulster,55,-7.1919871
 7,Newtownabbey,67599,Ulster,County Antrim,Northern,Part of the Belfast Metropolitan Area. It was founded in 1958 to encompass many adjacent villages just outside Belfast.,54.6778816,-5.9249199
-8,Bangor,64596,Ulster,County Down,Northern,"Granted city status in 2022. Though a city in its own right, it is also part of the wider Belfast Metropolitan Area.",54.1548551,-9.7211928
+8,Bangor,64596,Ulster,County Down,Northern,"Granted city status in 2022. Though a city in its own right, it is also part of the wider Belfast Metropolitan Area.",54.6534, -5.66895
 9,Waterford,60079,Munster,"County Waterford, County Kilkenny",Republic,"Third-largest in the province of Munster. It is the island of Ireland's oldest surviving city, having been founded by Vikings in the 9th century AD.",52.2609997,-7.1119081
-10,Lisburn,51447,Ulster,"County Antrim, County Down",Northern,"Granted city status in 2002. The city lies on the border between County Antrim and County Down, Ulster's two most populated counties. Though a city in its own right, it is also part of the wider Belfast Metropolitan Area.",53.403256,-8.3247922
+10,Lisburn,51447,Ulster,"County Antrim, County Down",Northern,"Granted city status in 2002. The city lies on the border between County Antrim and County Down, Ulster's two most populated counties. Though a city in its own right, it is also part of the wider Belfast Metropolitan Area.",54.52337, -6.03527
 11,Drogheda,44135,Leinster,"County Louth, County Meath",Republic,"Largest town in the Republic of Ireland, located in County Louth with its southern environs located in County Meath",53.7149877,-6.3524183
 12,Dundalk,43112,Leinster,County Louth,Republic,County town of County Louth,54.0046033,-6.4008879
 13,Swords,40776,Leinster,"County Dublin, Fingal",Republic,"North Dublin suburban town and second-largest settlement in County Dublin after the city itself. Forms part of the Greater Dublin Area. Lies both in the traditional County Dublin and since 1994, Fingal County.",53.4594799,-6.219175
@@ -16,7 +16,7 @@ Rank,Settlement,Population,Province,County,Jurisdiction,Description,Latitude,Lon
 15,Bray,33512,Leinster,"County Wicklow, County Dublin[4]",Republic,Most populous town in County Wicklow. An extremely small portion of the town is in County Dublin. Bray is considered part of the Greater Dublin Area.,53.2014604,-6.1105049
 16,Ballymena,31119,Ulster,County Antrim,Northern,,54.8662966,-6.2760159
 17,Newtownards,29637,Ulster,County Down,Northern,,54.5933779,-5.6960935
-18,Lurgan,28634,Ulster,County Armagh,Northern,Largest settlement in County Armagh.,54.5410995,-8.1547343
+18,Lurgan,28634,Ulster,County Armagh,Northern,Largest settlement in County Armagh.,54.468441, -6.333961
 19,Carrickfergus,27998,Ulster,County Antrim,Northern,"Though a town in its own right, it is also part of the wider Belfast Metropolitan Area.",54.7136165,-5.8073112
 20,Ennis,27923,Munster,County Clare,Republic,County town and largest settlement in County Clare. Largest town in Munster.,52.8435152,-8.983747
 21,Newry,27913,Ulster,"County Down, County Armagh",Northern,"Granted city status in 2002, it is Northern Ireland's fifth-largest city",52.7274966,-6.6175167
@@ -38,7 +38,7 @@ Rank,Settlement,Population,Province,County,Jurisdiction,Description,Latitude,Lon
 37,Sligo,20608,Connacht,County Sligo,Republic,"County town of County Sligo, second largest settlement in Connacht and largest town in Connacht",54.2720696,-8.4751357
 38,Celbridge,20601,Leinster,County Kildare,Republic,,53.3383004,-6.5396223
 39,Omagh,20458,Ulster,County Tyrone,Northern,County town and largest settlement in County Tyrone.,54.5992486,-7.3029907
-40,Larne,18856,Ulster,County Antrim,Northern,,51.4913468,-9.226475
+40,Larne,18856,Ulster,County Antrim,Northern,,54.8500, -5.81667
 41,Malahide,18608,Leinster,"County Dublin, Fingal",Republic,Forms part of the Greater Dublin Area. Households in Malahide have the highest median incomes in Ireland.[5],53.4508401,-6.15367
 42,Clonmel,18369,Munster,County Tipperary,Republic,Largest settlement in County Tipperary,52.3610817,-7.6991241
 43,Carrigaline,18239,Munster,County Cork,Republic,Forms part of Metropolitan Cork.,51.8149556,-8.3922675
